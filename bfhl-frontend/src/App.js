@@ -10,17 +10,20 @@ const App = () => {
 
   const handleSubmit = async () => {
     try {
+        // ✅ Parse JSON
         const parsedInput = JSON.parse(jsonInput);
 
-        if (!Array.isArray(parsedInput)) {
-            setError("Input must be an array.");
+        // ✅ Validate the JSON structure
+        if (!parsedInput || !parsedInput.data || !Array.isArray(parsedInput.data)) {
+            setError("Invalid JSON format. Expected: { data: [...] }");
             return;
         }
 
+        // ✅ Send the correctly formatted data to the backend
         const res = await axios.post(
-            "https://bhfl-ebon.vercel.app/bfhl", 
-            { data: parsedInput },  // ✅ Wrap in an object
-            { headers: { "Content-Type": "application/json" } } // ✅ Ensure JSON headers
+            "https://bhfl-ebon.vercel.app/bfhl",
+            parsedInput, // ✅ Already in correct format
+            { headers: { "Content-Type": "application/json" } }
         );
 
         setResponse(res.data);
@@ -31,6 +34,7 @@ const App = () => {
         setResponse(null);
     }
 };
+
 
 
 
