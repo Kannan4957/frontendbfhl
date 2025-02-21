@@ -11,6 +11,7 @@ const App = () => {
   const handleSubmit = async () => {
     try {
         // ✅ Parse JSON
+      console.log("Raw JSON input:", jsonInput);
         const parsedInput = JSON.parse(jsonInput);
       console.log(parsedInput);
 
