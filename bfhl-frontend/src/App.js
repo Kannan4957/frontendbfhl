@@ -11,7 +11,11 @@ const App = () => {
   const handleSubmit = async () => {
     try {
       const parsedInput = JSON.parse(jsonInput);
-      const res = await axios.post("https://bhfl-ebon.vercel.app/bfhl", parsedInput);
+      const res = await axios.post(
+  "https://bhfl-ebon.vercel.app/bfhl",
+  { data: parsedInput },
+  { headers: { "Content-Type": "application/json" } } // ✅ Force JSON
+);
       setResponse(res.data);
       setError(null);
     } catch (err) {
