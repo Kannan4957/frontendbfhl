@@ -12,6 +12,7 @@ const App = () => {
     try {
         // ✅ Parse JSON
         const parsedInput = JSON.parse(jsonInput);
+      console.log(parsedInput);
 
         // ✅ Validate the JSON structure
         if (!parsedInput || !parsedInput.data || !Array.isArray(parsedInput.data)) {
