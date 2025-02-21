@@ -7,11 +7,11 @@ const App = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState([]);
+   console.log("Raw JSON input:", jsonInput);
 
   const handleSubmit = async () => {
     try {
         // ✅ Parse JSON
-      console.log("Raw JSON input:", jsonInput);
         const parsedInput = JSON.parse(jsonInput);
       console.log(parsedInput);
 
