@@ -10,20 +10,28 @@ const App = () => {
 
   const handleSubmit = async () => {
     try {
-      const parsedInput = JSON.parse(jsonInput);
-      const res = await axios.post(
-        "https://bhfl-ebon.vercel.app/bfhl", 
-        { data: parsedInput },  // ✅ Ensure the correct payload format
-        { headers: { "Content-Type": "application/json" } } // ✅ Ensure proper headers
-      );
-      setResponse(res.data);
-      setError(null);
+        const parsedInput = JSON.parse(jsonInput);
+
+        if (!Array.isArray(parsedInput)) {
+            setError("Input must be an array.");
+            return;
+        }
+
+        const res = await axios.post(
+            "https://bhfl-ebon.vercel.app/bfhl", 
+            { data: parsedInput },  // ✅ Wrap in an object
+            { headers: { "Content-Type": "application/json" } } // ✅ Ensure JSON headers
+        );
+
+        setResponse(res.data);
+        setError(null);
     } catch (err) {
-      setError("Invalid JSON or server error.");
-      setResponse(null);
-      console.log(err);
+        console.error("Request error:", err.response?.data || err.message);
+        setError(err.response?.data?.message || "Invalid JSON or server error.");
+        setResponse(null);
     }
 };
+
 
 
   return (
