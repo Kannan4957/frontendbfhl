@@ -21,6 +21,7 @@ const App = () => {
     } catch (err) {
       setError("Invalid JSON or server error.");
       setResponse(null);
+      console.log(err);
     }
 };
 
