@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 
 const App = () => {
+  console.log("Hello");
   const [jsonInput, setJsonInput] = useState('{"data": ["A","C","z"]}');
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
